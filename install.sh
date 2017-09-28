@@ -80,7 +80,7 @@ echo "===> OK"
 echo
 
 echo "=== Applying docker config..."
-eval "$(docker-machine env ${VMNAME})"
+eval "$(docker-machine env ${VMNAME} --shell bash)"
 echo "===> OK"
 echo
 
