@@ -42,7 +42,7 @@ less mobymac.sh
 - Yes, the name *mobymac* is very confusing.
 - This will destroy all your existing docker data, be careful!
 - NFS mounts have less guarantees regarding FS consistency - in practise it should just work (tm)
-- Ports are not mapped to localhost - run `docker-machine ip` to find out the docker VM IP
+- Ports are not mapped to localhost - run `docker-machine ip mobymac` to find out the docker VM IP
 
 ## Why?
 
