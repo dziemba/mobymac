@@ -2,7 +2,7 @@
 set -e
 
 MEM="${1:-4096}"
-VER="${2:-v17.09.0-ce-rc3}"
+VER="${2:-v17.09.0-ce}"
 
 VMNAME="mobymac"
 ENV_LINE="docker-machine env ${VMNAME}"
