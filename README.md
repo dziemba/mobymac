@@ -13,8 +13,9 @@ Automagically install Docker in a VirtualBox VM with super-fast NFS mounts.
 
 ## Installation (easy)
 
+Use the latest docker version and 4GB RAM for the VM:
 ```bash
-curl -sfSL https://github.com/dziemba/mobymac/raw/master/install.sh |bash
+curl -sfSL https://github.com/dziemba/mobymac/raw/master/install.sh |bash -s 4096
 ```
 
 ## Installation (advanced, recommended)
@@ -22,6 +23,7 @@ curl -sfSL https://github.com/dziemba/mobymac/raw/master/install.sh |bash
 ```bash
 # download installer
 curl -sfSL https://github.com/dziemba/mobymac/raw/master/install.sh -o mobymac.sh
+chmod +x mobymac.sh
 
 # verify that it does what you want
 less mobymac.sh
