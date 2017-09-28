@@ -55,3 +55,10 @@ When Docker for Mac is stable enough, this project will become obsolete.
 - https://github.com/adlogix/docker-machine-nfs
 - https://github.com/docker/for-mac/issues/77
 - https://forums.docker.com/t/file-access-in-mounted-volumes-extremely-slow-cpu-bound/8076/256
+
+## Contributing
+I'm happy about any feedback! Feel free to open issues or create PRs.
+
+## License
+
+MIT, see [LICENSE](LICENSE)
