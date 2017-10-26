@@ -2,7 +2,7 @@
 set -e
 
 MEM="${1:-4096}"
-VER="${2:-v17.09.0-ce}"
+VER="${2:-v17.10.0-ce}"
 
 VMNAME="default"
 ENV_LINE="docker-machine env ${VMNAME}"
