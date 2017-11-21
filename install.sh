@@ -93,10 +93,10 @@ function main() {
   echo "===> OK"
   echo
 
-  echo "=== Adding docker config to .zsh_profile"
-  touch $HOME/.zsh_profile
-  if ! grep -q "${ENV_LINE}" $HOME/.zsh_profile; then
-    echo "${EVAL_LINE}" >> $HOME/.zsh_profile
+  echo "=== Adding docker config to .zprofile"
+  touch $HOME/.zprofile
+  if ! grep -q "${ENV_LINE}" $HOME/.zprofile; then
+    echo "${EVAL_LINE}" >> $HOME/.zprofile
   fi
   echo "===> OK"
   echo
