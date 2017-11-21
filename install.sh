@@ -1,12 +1,14 @@
 #!/bin/bash
 set -e
 
-MEM="${1:-4096}"
-VER="${2:-v17.10.0-ce}"
+SHELL_INTEGRATION="${1:-manual}"
+MEM="${2:-4096}"
+VER="${3:-v17.10.0-ce}"
 
 VMNAME="default"
 ENV_LINE="docker-machine env ${VMNAME}"
 EVAL_LINE="eval \"\$(docker-machine env ${VMNAME})\""
+EVAL_LINE_FISH="eval (docker-machine env ${VMNAME} --shell fish)"
 
 function main() {
   echo "========="
@@ -85,19 +87,49 @@ function main() {
   echo "===> OK"
   echo
 
-  echo "=== Adding docker config to .bash_profile"
-  touch $HOME/.bash_profile
-  if ! grep -q "${ENV_LINE}" $HOME/.bash_profile; then
-    echo "${EVAL_LINE}" >> $HOME/.bash_profile
-  fi
-  echo "===> OK"
-  echo
+  case "$SHELL_INTEGRATION" in
+  bash)
+    echo "=== Adding docker config to .bash_profile"
+    touch $HOME/.bash_profile
+    if ! grep -q "${ENV_LINE}" $HOME/.bash_profile; then
+      echo "${EVAL_LINE}" >> $HOME/.bash_profile
+    fi
+    ;;
 
-  echo "=== Adding docker config to .zprofile"
-  touch $HOME/.zprofile
-  if ! grep -q "${ENV_LINE}" $HOME/.zprofile; then
-    echo "${EVAL_LINE}" >> $HOME/.zprofile
-  fi
+  zsh)
+    echo "=== Adding docker config to .zprofile"
+    touch $HOME/.zprofile
+    if ! grep -q "${ENV_LINE}" $HOME/.zprofile; then
+      echo "${EVAL_LINE}" >> $HOME/.zprofile
+    fi
+    ;;
+
+  fish)
+    echo "=== Adding docker config to config.fish"
+    mkdir -p $HOME/.config/fish
+    touch $HOME/.config/fish/config.fish
+    if ! grep -q "${ENV_LINE}" $HOME/.config/fish/config.fish; then
+      echo "${EVAL_LINE_FISH}" >> $HOME/.config/fish/config.fish
+    fi
+    ;;
+
+  *)
+    echo "==="
+    echo "=== ACTION REQUIRED: Add docker config to your shell's profile file"
+    echo "==="
+    echo "=== Please add the appropriate line to your shell's configuration:"
+    echo "==="
+    echo
+    echo ".bash_profile (bash) / .zprofile (zsh):"
+    echo "   ${EVAL_LINE}"
+    echo
+    echo "config.fish (fish):"
+    echo "   ${EVAL_LINE_FISH}"
+    echo
+    echo "Press ENTER when you're done."
+    read
+    ;;
+  esac
   echo "===> OK"
   echo
 
