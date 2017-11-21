@@ -9,13 +9,13 @@ Automagically install Docker in a VirtualBox VM with super-fast NFS mounts.
 - Install docker client binaries
 - Create a boot2docker VM
 - Set up NFS mounts for VM
-- Set up docker environment in `.bash_profile` and `.zsh_profile`
+- Set up docker environment in `.bash_profile`, `.zprofile` or `fish.config` (optional!)
 
 ## Installation (easy)
 
-Use the latest docker version and 4GB RAM for the VM:
+Use the latest docker version, 4GB RAM for the VM and set up `.bash_profile`:
 ```bash
-curl -sfSL https://github.com/dziemba/mobymac/raw/master/install.sh |bash -s 4096
+curl -sfSL https://github.com/dziemba/mobymac/raw/master/install.sh |bash -s bash 4096
 ```
 
 ## Installation (advanced, recommended)
@@ -32,10 +32,13 @@ less mobymac.sh
 ./mobymac.sh
 
 # ... or run it with more params:
-# ./mobymac.sh [VM memory in MB] [Docker version]
-./mobymac.sh 2048
-./mobymac.sh 2048 v17.06.0-ce
+# ./mobymac.sh [shell integration] [VM memory in MB] [Docker version]
+./mobymac.sh zsh
+./mobymac.sh zsh 2048
+./mobymac.sh zsh 2048 v17.06.0-ce
 ```
+
+Shell integration can be one of the following: `bash`, `zsh`, `fish` or `manual`.
 
 ## Notes
 
