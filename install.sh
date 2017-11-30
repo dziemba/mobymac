@@ -47,8 +47,13 @@ function main() {
   fi
   echo
 
-  echo "=== (Re-)installing docker packages..."
+  echo "=== Removing old docker packages..."
   brew uninstall --force docker docker-compose docker-machine docker-machine-nfs
+  rm -f /usr/local/bin/{docker,docker-compose,docker-machine,docker-machine-nfs}
+  echo "===> OK"
+  echo
+
+  echo "=== Installing docker packages..."
   brew install docker docker-compose docker-machine docker-machine-nfs
   echo "===> OK"
   echo
