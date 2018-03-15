@@ -78,7 +78,7 @@ function main() {
   echo
 
   echo "=== Setting up NFS mount..."
-  docker-machine-nfs ${VMNAME}
+  docker-machine-nfs ${VMNAME} --mount-opts="noacl,async,noatime,actimeo=1"
   echo "===> OK"
   echo
 
