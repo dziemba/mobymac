@@ -69,7 +69,7 @@ function main() {
     --engine-storage-driver overlay2 \
     --engine-opt experimental=true \
     -d virtualbox \
-    --virtualbox-cpu-count -1 \
+    --virtualbox-cpu-count $(sysctl -n hw.physicalcpu) \
     --virtualbox-memory ${MEM} \
     --virtualbox-disk-size 40000 \
     --virtualbox-no-share \
