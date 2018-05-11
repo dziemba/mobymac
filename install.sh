@@ -3,7 +3,7 @@ set -e
 
 SHELL_INTEGRATION="${1:-manual}"
 MEM="${2:-4096}"
-VER="${3:-v18.04.0-ce}"
+VER="${3:-v18.05.0-ce}"
 
 VMNAME="default"
 ENV_LINE="docker-machine env ${VMNAME}"
