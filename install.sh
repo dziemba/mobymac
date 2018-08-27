@@ -139,7 +139,7 @@ function main() {
   echo
 
   echo "=== Testing docker..."
-  docker run docker/whalesay cowsay meow
+  docker run --rm docker/whalesay cowsay meow
   echo "=== Finished. It works!"
   echo
 }
