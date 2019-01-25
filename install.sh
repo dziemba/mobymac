@@ -3,7 +3,7 @@ set -e
 
 SHELL_INTEGRATION="${1:-manual}"
 MEM="${2:-4096}"
-VER="${3:-v18.06.1-ce}"
+VER="${3:-v18.09.1}"
 
 VMNAME="default"
 ENV_LINE="docker-machine env ${VMNAME}"
@@ -78,7 +78,7 @@ function main() {
   echo
 
   echo "=== Setting up NFS mount..."
-  docker-machine-nfs ${VMNAME} --mount-opts="noacl,async,noatime,actimeo=1"
+  docker-machine-nfs ${VMNAME} --mount-opts="noacl,async,noatime,actimeo=1,nfsvers=3"
   echo "===> OK"
   echo
 

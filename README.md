@@ -35,7 +35,7 @@ less mobymac.sh
 # ./mobymac.sh [shell integration] [VM memory in MB] [Docker version]
 ./mobymac.sh zsh
 ./mobymac.sh zsh 2048
-./mobymac.sh zsh 2048 v17.06.0-ce
+./mobymac.sh zsh 2048 v18.09.1
 ```
 
 Shell integration can be one of the following: `bash`, `zsh`, `fish` or `manual`.
