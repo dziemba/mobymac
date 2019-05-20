@@ -40,6 +40,10 @@ less mobymac.sh
 
 Shell integration can be one of the following: `bash`, `zsh`, `fish` or `manual`.
 
+## Reinstallation
+
+Reinstalling is the same as installing!
+
 ## Notes
 
 - Yes, the name *mobymac* is very confusing.
