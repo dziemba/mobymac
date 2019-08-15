@@ -50,6 +50,10 @@ Reinstalling is the same as installing!
 - This will destroy all your existing docker data, be careful!
 - NFS mounts have less guarantees regarding FS consistency - in practise it should just work (tm)
 - Ports are not mapped to localhost - run `docker-machine ip` to find out the docker VM IP
+- If the script fails with an error message like
+`Error creating machine: Error in driver during machine creation...`,
+make sure to check Settings > Security & Privacy, and allow an install from Oracle,
+if prompted in that panel.
 
 ## Why?
 
