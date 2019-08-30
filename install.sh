@@ -69,11 +69,11 @@ function main() {
     --engine-storage-driver overlay2 \
     --engine-opt experimental=true \
     -d virtualbox \
-    --virtualbox-cpu-count $(sysctl -n hw.physicalcpu) \
-    --virtualbox-memory ${MEM} \
+    --virtualbox-cpu-count "$(sysctl -n hw.physicalcpu)" \
+    --virtualbox-memory "${MEM}" \
     --virtualbox-disk-size 40000 \
     --virtualbox-no-share \
-    --virtualbox-boot2docker-url ${ISO}
+    --virtualbox-boot2docker-url "${ISO}"
   echo "===> OK"
   echo
 
@@ -95,26 +95,29 @@ function main() {
   case "$SHELL_INTEGRATION" in
   bash)
     echo "=== Adding docker config to .bash_profile"
-    touch $HOME/.bash_profile
-    if ! grep -q "${ENV_LINE}" $HOME/.bash_profile; then
-      echo "${EVAL_LINE}" >> $HOME/.bash_profile
+    F="$HOME/.bash_profile"
+    touch "$F"
+    if ! grep -q "${ENV_LINE}" "$F"; then
+      echo "${EVAL_LINE}" >> "$F"
     fi
     ;;
 
   zsh)
     echo "=== Adding docker config to .zprofile"
-    touch $HOME/.zprofile
-    if ! grep -q "${ENV_LINE}" $HOME/.zprofile; then
-      echo "${EVAL_LINE}" >> $HOME/.zprofile
+    F="$HOME/.zprofile"
+    touch "$F"
+    if ! grep -q "${ENV_LINE}" "$F"; then
+      echo "${EVAL_LINE}" >> "$F"
     fi
     ;;
 
   fish)
     echo "=== Adding docker config to config.fish"
-    mkdir -p $HOME/.config/fish
-    touch $HOME/.config/fish/config.fish
-    if ! grep -q "${ENV_LINE}" $HOME/.config/fish/config.fish; then
-      echo "${EVAL_LINE_FISH}" >> $HOME/.config/fish/config.fish
+    F="$HOME/.config/fish/config.fish"
+    mkdir -p "$(dirname "$F")"
+    touch "$F"
+    if ! grep -q "${ENV_LINE}" "$F"; then
+      echo "${EVAL_LINE_FISH}" >> "$F"
     fi
     ;;
 
@@ -132,7 +135,7 @@ function main() {
     echo "   ${EVAL_LINE_FISH}"
     echo
     echo "Press ENTER when you're done."
-    read
+    read -r
     ;;
   esac
   echo "===> OK"
