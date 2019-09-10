@@ -27,7 +27,16 @@ function main() {
     exit 1
   fi
 
-  echo "=== Uninstalling Docker for Mac..."
+  echo "=== Uninstalling Docker for Mac (brew cask)..."
+  if brew cask list |grep ^docker$; then
+    brew cask uninstall docker
+    echo "===> OK"
+  else
+    echo "=== Not found - skipping"
+  fi
+  echo
+
+  echo "=== Uninstalling Docker for Mac (native)..."
   if [ -e /Applications/Docker.app ]; then
     /Applications/Docker.app/Contents/MacOS/Docker --uninstall
     rm -rf /Applications/Docker.app
