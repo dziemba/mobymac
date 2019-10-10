@@ -48,7 +48,6 @@ function main() {
 
   echo "=== Installing Virtualbox..."
   if [ ! -e /Applications/VirtualBox.app ]; then
-    brew tap caskroom/cask
     brew cask install virtualbox
     echo "===> OK"
   else
