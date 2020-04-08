@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+set -e -o pipefail
 
 MEM="${1:-4096}"
 SHELL_INTEGRATION="${2:-auto}"
@@ -57,6 +57,7 @@ function main() {
   else
     echo "=== Already installed - skipping"
   fi
+  echo "=== Version: $(VBoxManage --version)"
   echo
 
   echo "=== Removing old docker packages..."
