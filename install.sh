@@ -157,6 +157,8 @@ function main() {
   docker run --rm hello-world
   echo "=== Finished. It works!"
   echo
+
+  echo "=== Please re-open all your terminal windows for the new docker settings to apply!"
 }
 
 main
