@@ -1,9 +1,13 @@
 #!/bin/bash
 set -e
 
-SHELL_INTEGRATION="${1:-manual}"
-MEM="${2:-4096}"
+MEM="${1:-4096}"
+SHELL_INTEGRATION="${2:-auto}"
 VER="${3:-v19.03.5}"
+
+if [ "$SHELL_INTEGRATION" == "auto" ]; then
+  SHELL_INTEGRATION=$(basename "$SHELL")
+fi
 
 VMNAME="default"
 ENV_LINE="docker-machine env ${VMNAME}"
@@ -15,7 +19,7 @@ function main() {
   echo " mobymac "
   echo "========="
   echo
-  echo "Creating docker ${VER} VM with ${MEM}MB RAM and $SHELL_INTEGRATION shell integration"
+  echo "Creating docker ${VER} VM with ${MEM}MB RAM and '$SHELL_INTEGRATION' shell integration"
   echo
   echo "WARNING: this will uninstall docker4mac and destroy all existing docker data"
   echo "Press CTRL-C to abort (sleeping for 5 seconds)"
