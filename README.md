@@ -40,13 +40,12 @@ less mobymac.sh
 
 Shell integration can be one of the following: `auto` (default), `bash`, `zsh`, `fish` or `manual`.
 
-## Reinstallation
+## Updating / Reinstallation
 
-Reinstalling is the same as installing!
+It's the same as installing - just run it again!
 
 ## Notes
 
-- Yes, the name *mobymac* is very confusing.
 - This will destroy all your existing docker data, be careful!
 - NFS mounts have less guarantees regarding FS consistency - in practise it should just work (tm)
 - Ports are not mapped to localhost - run `docker-machine ip` to find out the docker VM IP
@@ -57,17 +56,14 @@ if prompted in that panel.
 
 ## Why?
 
-Docker for Mac is an awesome project - use it if you can. It is however still slower than this
-approach. Also there are some weird DNS issues that do not occur with a VBox solution.
-When Docker for Mac is stable enough, this project will become obsolete.
+- File system access is still slow in Docker for Mac: https://github.com/docker/roadmap/issues/7
+- DNS queries with large responses are extremely slow: https://github.com/docker/for-mac/issues/4430
 
-## Further Reading
-
-- https://github.com/adlogix/docker-machine-nfs
-- https://github.com/docker/for-mac/issues/77
-- https://forums.docker.com/t/file-access-in-mounted-volumes-extremely-slow-cpu-bound/8076/256
+Docker for Mac is an awesome project - use it if you can.
+Once the above issues have been resolved, this project will become obsolete.
 
 ## Contributing
+
 I'm happy about any feedback! Feel free to open issues or create PRs.
 
 ## License
