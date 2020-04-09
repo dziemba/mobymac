@@ -50,6 +50,15 @@ function main() {
   fi
   echo
 
+  echo "=== Removing existing docker configuration..."
+  if [ -e "$HOME/.docker" ]; then
+    rm -rfv "$HOME/.docker"
+    echo "===> OK"
+  else
+    echo "=== Not found - skipping"
+  fi
+  echo
+
   echo "=== Installing Virtualbox..."
   if [ ! -e /Applications/VirtualBox.app ]; then
     brew cask install virtualbox
