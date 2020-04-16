@@ -62,9 +62,26 @@ if prompted in that panel.
 Docker for Mac is an awesome project - use it if you can.
 Once the above issues have been resolved, this project will become obsolete.
 
+## Troubleshooting
+
+### Virtualbox Installation fails
+
+1. Uninstall virtualbox: `brew cask uninstall virtualbox`
+2. If the above step failed: reboot and try again
+3. Install virtualbox: `brew cask install virtualbox`
+4. If the above step failed: Open *System Preferences -> Security & Privacy -> General*, then allow the kernel extension.
+   Reboot and try step 3 again.
+5. Run the mobymac installer (again).
+6. If that still fails, try the whole process one more time and reboot generously. 
+   Open an Issue on this project if you're still having trouble.
+
+### Other Problems
+
+Please open an issue if you're stuck.
+
 ## Contributing
 
-I'm happy about any feedback! Feel free to open issues or create PRs.
+Feel free to open issues about feature requests or create PRs.
 
 ## License
 
