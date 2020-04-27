@@ -44,15 +44,12 @@ Shell integration can be one of the following: `auto` (default), `bash`, `zsh`, 
 
 It's the same as installing - just run it again!
 
-## Notes
+## Known Limitations
 
-- This will destroy all your existing docker data, be careful!
+- Filesystem watching (inotify) [does not work](https://stackoverflow.com/questions/4231243/inotify-with-nfs).
+  Please use polling instead if possible. See https://github.com/dziemba/mobymac/issues/6
 - NFS mounts have less guarantees regarding FS consistency - in practise it should just work (tm)
 - Ports are not mapped to localhost - run `docker-machine ip` to find out the docker VM IP
-- If the script fails with an error message like
-`Error creating machine: Error in driver during machine creation...`,
-make sure to check Settings > Security & Privacy, and allow an install from Oracle,
-if prompted in that panel.
 
 ## Why?
 
@@ -72,7 +69,7 @@ Once the above issues have been resolved, this project will become obsolete.
 4. If the above step failed: Open *System Preferences -> Security & Privacy -> General*, then allow the kernel extension.
    Reboot and try step 3 again.
 5. Run the mobymac installer (again).
-6. If that still fails, try the whole process one more time and reboot generously. 
+6. If that still fails, try the whole process one more time and reboot generously.
    Open an Issue on this project if you're still having trouble.
 
 ### Other Problems
