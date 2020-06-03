@@ -189,15 +189,6 @@ function main() {
   echo "==> OK"
   echo
 
-  echo "=== Removing existing docker configuration..."
-  if [ -e "$HOME/.docker" ]; then
-    rm -rfv "$HOME/.docker"
-    echo "==> OK"
-  else
-    echo "==> Not found - skipping"
-  fi
-  echo
-
   echo "=== Removing old mobymac/docker-machine VMs..."
   for VM in default mobymac; do
     if VBoxManage showvminfo "$VM" &>/dev/null; then
@@ -211,6 +202,15 @@ function main() {
   echo "=== Remaining VMs (please clean up manually if needed):"
   VBoxManage list vms
   echo "==> OK"
+  echo
+
+  echo "=== Removing existing docker configuration..."
+  if [ -e "$HOME/.docker" ]; then
+    rm -rfv "$HOME/.docker"
+    echo "==> OK"
+  else
+    echo "==> Not found - skipping"
+  fi
   echo
 
   echo "=== Removing leftover vagrant state..."
