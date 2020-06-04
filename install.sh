@@ -89,7 +89,7 @@ gen_plist() {
     <string>com.dziemba.mobymac</string>
     <key>ProgramArguments</key>
     <array>
-      <string>$(which VBoxManage)</string>
+      <string>/Applications/VirtualBox.app/Contents/MacOS/VBoxManage</string>
       <string>startvm</string>
       <string>${VM_NAME}</string>
       <string>--type</string>
