@@ -92,6 +92,8 @@ gen_plist() {
       <string>$(which VBoxManage)</string>
       <string>startvm</string>
       <string>${VM_NAME}</string>
+      <string>--type</string>
+      <string>headless</string>
     </array>
     <key>RunAtLoad</key>
     <true/>
