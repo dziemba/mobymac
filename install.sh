@@ -195,7 +195,8 @@ function main() {
   for VM in default mobymac; do
     if VBoxManage showvminfo "$VM" &>/dev/null; then
       echo "=== Shut down and destroy: '$VM'"
-      VBoxManage controlvm "$VM" poweroff
+      VBoxManage controlvm "$VM" poweroff || true
+      sleep 10
       VBoxManage unregistervm "$VM" --delete
     else
       echo "=== No VM with name: '$VM'"
