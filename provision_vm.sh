@@ -15,6 +15,13 @@ if [ -d /etc/docker ]; then
   exit 1
 fi
 
+echo "=== Setting up time sync"
+# poll frequently to fix clock drift after VM save/restore quicky
+# this is not ideal - if you have a better idea, please contribute!
+echo 'PollIntervalMaxSec=64' >> /etc/systemd/timesyncd.conf
+systemctl restart systemd-timesyncd
+timedatectl set-ntp true
+
 echo "=== Attaching data volume"
 mkfs -t ext4 /dev/sdb
 echo "/dev/sdb /var/lib/docker ext4 defaults 0 0" >> /etc/fstab
@@ -36,7 +43,7 @@ EOD
 echo "=== Installing packages"
 export DEBIAN_FRONTEND=noninteractive
 apt-get update
-apt-get install -y apt-transport-https curl gnupg-agent nfs-common ntp
+apt-get install -y apt-transport-https curl gnupg-agent nfs-common
 
 echo "=== Installing docker"
 curl -fsSL https://download.docker.com/linux/debian/gpg |apt-key add -
