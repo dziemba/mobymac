@@ -73,6 +73,7 @@ Vagrant.configure('2') do |config|
       '--port', 1, '--device', 0, '--type', 'hdd', '--medium', data_disk]
     end
 
+  config.vm.synced_folder '.', '/vagrant', disabled: true
   config.vm.provision :shell, path: 'provision_vm.sh', args: ['${HOST_IP}', '${HOME}']
   config.vm.network :private_network, ip: '${VM_IP}'
 end
