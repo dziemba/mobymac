@@ -13,7 +13,7 @@ SUBNET="${4:-192.168.42}"
 HOST_IP="${SUBNET}.1" # when given a 192.168.x.y IP, vagrant assigns 192.168.x.1 to the host
 VM_IP="${SUBNET}.2"
 ENV_LINE="export DOCKER_HOST='tcp://${VM_IP}:2376'"
-ENV_LINE_FISH="set DOCKER_HOST 'tcp://${VM_IP}:2376';"
+ENV_LINE_FISH="set -x DOCKER_HOST 'tcp://${VM_IP}:2376';"
 DOCKER_MACHINE_LINE="docker-machine env"
 EXPORTS_LINE="${HOME} ${VM_IP} -alldirs -mapall=$(id -u):$(id -g)"
 PLIST="$HOME/Library/LaunchAgents/com.dziemba.mobymac.plist"
