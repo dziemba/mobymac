@@ -18,6 +18,16 @@ DOCKER_MACHINE_LINE="docker-machine env"
 EXPORTS_LINE="${HOME} ${VM_IP} -alldirs -mapall=$(id -u):$(id -g)"
 PLIST="$HOME/Library/LaunchAgents/com.dziemba.mobymac.plist"
 
+error_banner() {
+ echo
+ echo
+ echo "+===============================================+"
+ echo "|               ERRORS FOUND                    |"
+ echo "| Inspect logs and ask for assistance if needed |"
+ echo "+===============================================+"
+}
+trap error_banner ERR
+
 lineinfile() {
   FILE="$1"
   LINE="$2"
