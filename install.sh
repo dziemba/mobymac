@@ -25,6 +25,9 @@ error_banner() {
  echo "|               ERRORS FOUND                    |"
  echo "| Inspect logs and ask for assistance if needed |"
  echo "+===============================================+"
+ echo
+ echo "For troubleshooting help, go to:"
+ echo "https://github.com/dziemba/mobymac#troubleshooting"
 }
 trap error_banner ERR
 

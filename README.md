@@ -69,6 +69,13 @@ Once the above issues have been resolved, this project will become obsolete.
 6. If that still fails, try the whole process one more time and reboot generously.
    Open an Issue on this project if you're still having trouble.
 
+### Creating the VM fails (VirtualBox error)
+
+1. If the above step failed: Open *System Preferences -> Security & Privacy -> General*, then allow the kernel extension.
+2. Reboot your computer.
+2. Run the mobymac installer (again).
+
+
 ### Other Problems
 
 Please open an issue if you're stuck.
