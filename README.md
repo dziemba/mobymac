@@ -75,6 +75,11 @@ Once the above issues have been resolved, this project will become obsolete.
 2. Reboot your computer.
 2. Run the mobymac installer (again).
 
+### `exports: ... conflicts with existing export ...`
+
+1. Open /etc/exports: `sudo vim /etc/exports`
+2. Delete all content
+3. Run the mobymac installer (again).
 
 ### Other Problems
 
