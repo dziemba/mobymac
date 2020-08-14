@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e -u -o pipefail
+set -e -E -u -o pipefail
 cd "$(dirname "$0")"
 
 VM_NAME="mobymac"
