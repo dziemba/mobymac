@@ -54,5 +54,5 @@ apt-get install -y docker-ce
 
 echo "=== Setting up NFS mount"
 mkdir -p "${HOST_HOME}"
-echo "${HOST_IP}:${HOST_HOME} ${HOST_HOME} nfs noacl,async,noatime,actimeo=1 0 0" >> /etc/fstab
+echo "${HOST_IP}:${HOST_HOME} ${HOST_HOME} nfs noacl,nolock,async,noatime,actimeo=1 0 0" >> /etc/fstab
 mount "${HOST_HOME}"
