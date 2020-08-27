@@ -42,8 +42,16 @@ EOD
 
 echo "=== Installing packages"
 export DEBIAN_FRONTEND=noninteractive
+echo "deb http://deb.debian.org/debian $(lsb_release -cs)-backports main" >> /etc/apt/sources.list
 apt-get update
 apt-get install -y apt-transport-https curl gnupg-agent nfs-common
+
+echo "=== Installing newer kernel from backports"
+apt-get install -y -t "$(lsb_release -cs)-backports" linux-image-amd64 linux-headers-amd64
+apt-get autoremove -y
+
+echo "=== Upgrading packages"
+apt-get dist-upgrade -y
 
 echo "=== Installing docker"
 curl -fsSL https://download.docker.com/linux/debian/gpg |apt-key add -
@@ -51,6 +59,10 @@ echo "deb https://download.docker.com/linux/debian $(lsb_release -cs) stable" \
   > /etc/apt/sources.list.d/docker.list
 apt-get update
 apt-get install -y docker-ce
+
+echo "=== Reinstall GRUB"
+# /dev/vda is now /dev/sda, so the built-in install will fail - let's install manually
+grub-install /dev/sda
 
 echo "=== Setting up NFS mount"
 mkdir -p "${HOST_HOME}"

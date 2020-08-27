@@ -249,6 +249,14 @@ function main() {
   echo "==> OK"
   echo
 
+  echo "=== Rebooting docker VM..."
+  # we can't use `vagrant reload` because the VM creation is not idempotent
+  vagrant halt
+  VBoxManage startvm ${VM_NAME} --type headless
+  sleep 60
+  echo "==> OK"
+  echo
+
   echo "=== Setting up VM launch-at-login plist..."
   mkdir -p "$(dirname "$PLIST")"
   gen_plist > "$PLIST"
