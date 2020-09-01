@@ -58,6 +58,11 @@ Once the above issues have been resolved, this project will become obsolete.
 
 ## Troubleshooting
 
+### `Cannot connect to the Docker daemon at tcp://192.168.42.2:2376. Is the docker daemon running?`
+
+1. Start the VM: `VBoxManage startvm mobymac --type headless`
+2. If that doesn't help, re-install mobymac.
+
 ### Virtualbox Installation fails
 
 1. Uninstall virtualbox: `brew cask uninstall virtualbox`
