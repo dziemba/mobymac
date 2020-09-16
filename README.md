@@ -86,6 +86,11 @@ Once the above issues have been resolved, this project will become obsolete.
 2. Delete all content
 3. Run the mobymac installer (again).
 
+### `Permission denied @ apply2files - /usr/local/lib/docker/cli-plugins`
+
+1. Run `sudo rm -rf /usr/local/lib/docker`
+2. Run the mobymac installer (again).
+
 ### Other Problems
 
 Please open an issue if you're stuck.
