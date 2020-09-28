@@ -2,8 +2,6 @@
 set -e -E -u -o pipefail
 cd "$(dirname "$0")"
 
-VM_NAME="mobymac"
-
 # command line arguments
 RAM="${1:-4096}"
 DISKSIZE="${2:-50}"
@@ -77,7 +75,7 @@ VM_DIR = %x(VBoxManage list systemproperties).lines
 Vagrant.configure('2') do |config|
   config.vm.box = 'debian/buster64'
   config.vm.provider 'virtualbox' do |v|
-    v.name = '${VM_NAME}'
+    v.name = 'mobymac'
     v.cpus = $(sysctl -n hw.physicalcpu)
     v.memory = ${RAM}
 
@@ -104,11 +102,9 @@ gen_plist() {
     <string>com.dziemba.mobymac</string>
     <key>ProgramArguments</key>
     <array>
-      <string>/Applications/VirtualBox.app/Contents/MacOS/VBoxManage</string>
-      <string>startvm</string>
-      <string>${VM_NAME}</string>
-      <string>--type</string>
-      <string>headless</string>
+      <string>/bin/bash</string>
+      <string>$(pwd)/start.sh</string>
+      <string>boot</string>
     </array>
     <key>RunAtLoad</key>
     <true/>
@@ -253,7 +249,7 @@ function main() {
   echo "=== Rebooting docker VM..."
   # we can't use `vagrant reload` because the VM creation is not idempotent
   vagrant halt
-  VBoxManage startvm ${VM_NAME} --type headless
+  ./start.sh
   sleep 60
   echo "==> OK"
   echo
