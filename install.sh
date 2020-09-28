@@ -15,7 +15,8 @@ VM_IP="${SUBNET}.2"
 ENV_LINE="export DOCKER_HOST='tcp://${VM_IP}:2376'"
 ENV_LINE_FISH="set -x DOCKER_HOST 'tcp://${VM_IP}:2376';"
 DOCKER_MACHINE_LINE="docker-machine env"
-EXPORTS_LINE="${HOME} ${VM_IP} -alldirs -mapall=$(id -u):$(id -g)"
+NFS_HOME="/System/Volumes/Data${HOME}"
+EXPORTS_LINE="${NFS_HOME} ${VM_IP} -fspath=/System/Volumes/Data -alldirs -mapall=$(id -u):$(id -g)"
 PLIST="$HOME/Library/LaunchAgents/com.dziemba.mobymac.plist"
 
 error_banner() {
@@ -87,7 +88,7 @@ Vagrant.configure('2') do |config|
     end
 
   config.vm.synced_folder '.', '/vagrant', disabled: true
-  config.vm.provision :shell, path: 'provision_vm.sh', args: ['${HOST_IP}', '${HOME}']
+  config.vm.provision :shell, path: 'provision_vm.sh', args: ['${HOST_IP}', '${HOME}', '${NFS_HOME}']
   config.vm.network :private_network, ip: '${VM_IP}'
 end
 EOD
@@ -236,7 +237,7 @@ function main() {
   echo
 
   echo "=== Setting up NFS mount on host..."
-  echo "=== Mounted homedir: ${HOME}"
+  echo "=== Mounted homedir: ${NFS_HOME}"
   echo "=== NOTE: sudo will be required to edit /etc/exports and restart NFS server"
   lineinfile /etc/exports "$EXPORTS_LINE" sudo
   nfsd checkexports
