@@ -156,7 +156,7 @@ function main() {
   echo
 
   echo "=== Uninstalling Docker for Mac (brew cask)..."
-  if brew cask list |grep ^docker$; then
+  if brew list --cask |grep ^docker$; then
     brew cask uninstall docker
     echo "==> OK"
   else
