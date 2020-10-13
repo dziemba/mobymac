@@ -41,6 +41,10 @@ Automagically install Docker in a VirtualBox VM with super-fast NFS mounts.
 
 It's the same as installing - just run it again!
 
+## Uninstalling
+
+Run `./uninstall.sh` in your mobymac checkout.
+
 ## Known Limitations
 
 - Filesystem watching (inotify) [does not work](https://stackoverflow.com/questions/4231243/inotify-with-nfs).
