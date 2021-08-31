@@ -154,7 +154,7 @@ function main() {
 
   echo "=== Uninstalling Docker for Mac (brew cask)..."
   if brew list --cask |grep ^docker$; then
-    brew cask uninstall docker
+    brew uninstall --cask docker
     echo "==> OK"
   else
     echo "==> Not found - skipping"
@@ -173,7 +173,7 @@ function main() {
 
   echo "=== Installing Virtualbox..."
   if [ ! -e /Applications/VirtualBox.app ]; then
-    brew cask install virtualbox
+    brew install --cask virtualbox
     echo "==> OK"
   else
     echo "==> Already installed - skipping"
@@ -183,7 +183,7 @@ function main() {
 
   echo "=== Installing Vagrant..."
   if [ ! -e /usr/local/bin/vagrant ]; then
-    brew cask install vagrant
+    brew install --cask vagrant
     echo "==> OK"
   else
     echo "==> Already installed - skipping"
