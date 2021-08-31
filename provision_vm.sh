@@ -16,13 +16,6 @@ if [ -d /etc/docker ]; then
   exit 1
 fi
 
-echo "=== Setting up time sync"
-# poll frequently to fix clock drift after VM save/restore quicky
-# this is not ideal - if you have a better idea, please contribute!
-echo 'PollIntervalMaxSec=64' >> /etc/systemd/timesyncd.conf
-systemctl restart systemd-timesyncd
-timedatectl set-ntp true
-
 echo "=== Attaching data volume"
 mkfs -t ext4 /dev/sdb
 echo "/dev/sdb /var/lib/docker ext4 defaults 0 0" >> /etc/fstab
@@ -43,16 +36,18 @@ EOD
 
 echo "=== Installing packages"
 export DEBIAN_FRONTEND=noninteractive
-echo "deb http://deb.debian.org/debian $(lsb_release -cs)-backports main" >> /etc/apt/sources.list
 apt-get update
-apt-get install -y apt-transport-https curl gnupg-agent nfs-common
-
-echo "=== Installing newer kernel from backports"
-apt-get install -y -t "$(lsb_release -cs)-backports" linux-image-amd64 linux-headers-amd64
-apt-get autoremove -y
+apt-get install -y apt-transport-https curl gnupg-agent nfs-common systemd-timesyncd
 
 echo "=== Upgrading packages"
 apt-get dist-upgrade -y
+
+echo "=== Setting up time sync"
+# poll frequently to fix clock drift after VM save/restore quicky
+# this is not ideal - if you have a better idea, please contribute!
+echo 'PollIntervalMaxSec=64' >> /etc/systemd/timesyncd.conf
+systemctl restart systemd-timesyncd
+timedatectl set-ntp true
 
 echo "=== Installing docker"
 curl -fsSL https://download.docker.com/linux/debian/gpg |apt-key add -

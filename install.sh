@@ -73,7 +73,7 @@ VM_DIR = %x(VBoxManage list systemproperties).lines
   .split(':').last.strip
 
 Vagrant.configure('2') do |config|
-  config.vm.box = 'debian/buster64'
+  config.vm.box = 'debian/bullseye64'
   config.vm.provider 'virtualbox' do |v|
     v.name = 'mobymac'
     v.cpus = $(sysctl -n hw.physicalcpu)
