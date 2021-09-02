@@ -8,16 +8,20 @@ Automagically install Docker in a VirtualBox VM with super-fast NFS mounts.
 - Install Virtualbox
 - Install docker client binaries
 - Create a Vagrant VM with Docker installed
+- Automatically start VM on boot/login
 - Set up NFS mounts for VM
 - Set up docker environment in `.bash_profile`, `.zprofile` or `fish.config` (optional!)
 
 ## Installation
 
-1. Clone this repo
+1. Clone this repo:
   ```bash
   git clone https://github.com/dziemba/mobymac.git ~/.mobymac
   cd ~/.mobymac
   ```
+  
+  You can use a different path if you like. 
+  The directory needs to stay where it is though after running the installer, otherwise the VM won't boot the next time.
 
 2. Run the installer
   ```bash
@@ -51,11 +55,13 @@ Run `./uninstall.sh` in your mobymac checkout.
   Please use polling instead if possible. See https://github.com/dziemba/mobymac/issues/6
 - NFS mounts have less guarantees regarding FS consistency - in practise it should just work (tm)
 - Ports are not mapped to localhost - use `192.168.42.2` to access docker ports
+- Virtualbox (and thus mobymac) doesn't work on Apple Silicon / M1 Chips
 
 ## Why?
 
 - File system access is still slow in Docker for Mac: https://github.com/docker/roadmap/issues/7
 - DNS queries with large responses are extremely slow: https://github.com/docker/for-mac/issues/4430
+- Docker Desktop is [no longer free](https://www.docker.com/blog/updating-product-subscriptions/) for certain use-cases.
 
 Docker for Mac is an awesome project - use it if you can.
 Once the above issues have been resolved, this project will become obsolete.
