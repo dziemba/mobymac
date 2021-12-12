@@ -26,15 +26,16 @@ Automagically install Docker in a VirtualBox VM with super-fast NFS mounts.
 2. Run the installer
   ```bash
   # Install with default settings
-  # (4096MB RAM, 50GB data disk, automatic shell integration, VM IP: 192.168.42.2)
+  # (4096MB RAM, 50GB data disk, automatic shell integration, VM IP: 192.168.42.2, NFS mount opts: noacl,nolock,async,noatime,actimeo=1)
   ./install.sh
 
   # Or run the installer with custom settings
-  # ./install.sh [VM memory in MB] [data disk size in GB] [shell integration] [VM IP subnet]
+  # ./install.sh [VM memory in MB] [data disk size in GB] [shell integration] [VM IP subnet] [NFS mount options]
   ./install.sh 2048
   ./install.sh 2048 30
   ./install.sh 2048 30 manual
-  ./install.sh 2048 30 manual 192.168.142
+  ./install.sh 2048 30 manual 192.168.142  
+  ./install.sh 2048 30 manual 192.168.142 'acl,nolock,async,noatime,actimeo=1'
   ```
 
 - Shell integration can be either `auto` (default) or `manual`.

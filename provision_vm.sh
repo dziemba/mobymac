@@ -10,6 +10,7 @@ fi
 HOST_IP="$1"
 HOST_HOME="$2"
 HOST_NFS_HOME="$3"
+NFS_MOUNT_OPTS="$4"
 
 if [ -d /etc/docker ]; then
   echo "Provisioning is not idempotent, please re-install mobymac if needed."
@@ -62,5 +63,5 @@ grub-install /dev/sda
 
 echo "=== Setting up NFS mount"
 mkdir -p "${HOST_HOME}"
-echo "${HOST_IP}:${HOST_NFS_HOME} ${HOST_HOME} nfs noacl,nolock,async,noatime,actimeo=1 0 0" >> /etc/fstab
+echo "${HOST_IP}:${HOST_NFS_HOME} ${HOST_HOME} nfs ${NFS_MOUNT_OPTS} 0 0" >> /etc/fstab
 mount "${HOST_HOME}"
