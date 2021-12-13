@@ -7,6 +7,7 @@ RAM="${1:-4096}"
 DISKSIZE="${2:-50}"
 SHELL_INTEGRATION="${3:-auto}"
 SUBNET="${4:-192.168.42}"
+NFS_MOUNT_OPTS="${5:-noacl,nolock,async,noatime,actimeo=1}"
 
 HOST_IP="${SUBNET}.1" # when given a 192.168.x.y IP, vagrant assigns 192.168.x.1 to the host
 VM_IP="${SUBNET}.2"
@@ -86,7 +87,7 @@ Vagrant.configure('2') do |config|
     end
 
   config.vm.synced_folder '.', '/vagrant', disabled: true
-  config.vm.provision :shell, path: 'provision_vm.sh', args: ['${HOST_IP}', '${HOME}', '${NFS_HOME}']
+  config.vm.provision :shell, path: 'provision_vm.sh', args: ['${HOST_IP}', '${HOME}', '${NFS_HOME}', '${NFS_MOUNT_OPTS}']
   config.vm.network :private_network, ip: '${VM_IP}'
 end
 EOD
